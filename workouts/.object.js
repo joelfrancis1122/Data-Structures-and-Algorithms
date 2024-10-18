@@ -96,3 +96,27 @@ const ress = array1.reduce((acc,current)=>{
 // }
 
 // console.log(object)
+
+
+
+
+
+
+
+
+const person = {
+  name: "John",
+  age: 30,
+  occupation: "Engineer"
+};
+
+const keys = Object.keys(person);
+console.log(keys); // Output: ["name", "age", "occupation"]
+
+
+const values = Object.values(person);
+console.log(values); // Output: ["John", 30, "Engineer"]
+
+
+const entriess = Object.entries(person);
+console.log(entriess); // Output: [["name", "John"], ["age", 30], ["occupation", "Engineer"]]

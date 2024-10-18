@@ -41,6 +41,8 @@ console.log("sum: ", calculateSum(nestedArray));
 
 
 
+
+
 /*----------------------------------------------------*/
 
 
@@ -62,3 +64,40 @@ console.log("sum: ", calculateSum(nestedArray));
 
 
 /*-----------------------flat array withuout using arr.flat()-----------------------------*/
+
+
+
+const array = [[1, 2], [3, 4], [5, 6]];
+const flattened = [];
+
+for (let i = 0; i < array.length; i++) {
+  for (let j = 0; j < array[i].length; j++) {
+    flattened.push(array[i][j]);
+  }
+}
+
+console.log(flattened); // Output: [1, 2, 3, 4, 5, 6]
+
+
+
+// ----------
+
+
+let k =0
+let result =[]
+
+for(let i=0;i<arr.length;i++){
+    if(typeof arr[i]!=="number"){
+        for(let j=0;j<arr[i].length;j++){
+            result[k] = arr[i][j]
+            k++
+        }
+    }else{
+        result[k] = arr[i]
+        k++
+    }
+}
+console.log(result)
+
+
+
