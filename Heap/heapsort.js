@@ -1,46 +1,58 @@
 function heapSort(arr) {
-    // Build a max heap
-    buildMaxHeap(arr);
+  let length = arr.length;
 
-    // Extract elements from the heap one by one
-    for (let i = arr.length - 1; i > 0; i--) {
-        // Swap the root (max element) with the last element
-        [arr[0], arr[i]] = [arr[i], arr[0]];
+  for (let i = Math.floor(length / 2) - 1; i >= 0; i--) {
+    heapify(arr, length, i);
+    console.log(arr, i, 0,"odi")
+  }
 
-        // Reduce the heap size and heapify the root
-        heapifyMax(arr, 0, i);
-    }
+  // Extract elements from heap one by one
+  for (let i = length - 1; i > 0; i--) {
+    // Move the current root (largest) to the end
+    [arr[0], arr[i]] = [arr[i], arr[0]];
+
+    // Call max heapify on the reduced heap
+    heapify(arr, i, 0);
+  }
+
+  return arr;
 }
 
-// Build a max heap from the array
-function buildMaxHeap(arr) {
-    for (let i = Math.floor(arr.length- 1 / 2) ; i >= 0; i--) {
-        heapifyMax(arr, i, arr.length);
-    }
-}
+// To heapify a subtree rooted with node i, length is the size of the heap
+function heapify(arr, length, i) {
+  let largest = i; // Initialize largest as root
+  let left = 2 * i + 1; // Left child
+  let right = 2 * i + 2; // Right child
 
-// Max-heapify function
-function heapifyMax(arr, index, heapSize) {
-    const leftChildIndex = 2 * index + 1;
-    const rightChildIndex = 2 * index + 2;
-    let largest = index;
+  // If left child is larger than root
+  if (left < length && arr[left] > arr[largest]) {
+    console.log(arr,left,length,"both left and length")
+    largest = left;
+  }
 
-    if (leftChildIndex < heapSize && arr[leftChildIndex] > arr[largest]) {
-        largest = leftChildIndex;
-    }
+  // If right child is larger than the largest so far
+  if (right < length && arr[right] > arr[largest]) {
+    largest = right;
+  }
 
-    if (rightChildIndex < heapSize && arr[rightChildIndex] > arr[largest]) {
-        largest = rightChildIndex;
-    }
+  // If largest is not root, swap and continue heapifying
+  if (largest !== i) {
+    [arr[i], arr[largest]] = [arr[largest], arr[i]];
 
-    if (largest !== index) {
-        [arr[index], arr[largest]] = [arr[largest], arr[index]];
-        heapifyMax(arr, largest, heapSize);
-    }
+    // Recursively heapify the affected subtree
+    heapify(arr, length, largest);
+  }
 }
 
 // Example usage
-let arr = [12, 34, 56, 54, 98, 67, 5, 7, 3, 0, 54];
+const arr = [5,4,3,2,1];
+console.log("Original array:", arr);
+
 heapSort(arr);
-console.log(arr); // Output: [0, 3, 5, 7, 12, 34, 54, 54, 56, 67, 98]
- 
+console.log("Sorted array:", arr);
+
+
+
+
+
+
