@@ -91,12 +91,12 @@ class LinkedList {
             this.prepend(value)
         } else {
             const node = new Node(value)
-            let prev = this.head
+            let curr = this.head
             for (let i = 0; i < index - 1; i++) {
-                prev = prev.next
+                curr = curr.next
             }
-            node.next = prev.next
-            prev.next = node
+            node.next = curr.next
+            curr.next = node
             this.size++
         }
     }
@@ -135,6 +135,7 @@ class LinkedList {
         if (this.isEmpty()) {
             return null
         }
+        
         if (this.head.value === value) {
             this.head = this.head.next
             this.size--
@@ -308,11 +309,14 @@ const list = new LinkedList()
 console.log('List is empty ? ', list.isEmpty())
 // console.log("list size", list.getSize())
 
-list.prepend(4)
+list.prepend(3)
 list.append(5)
-list.prepend(10)
+list.insert(4,1)
+
+
+// list.prepend(10)
 // list.removeValue(10)
-console.log("middle:", list.findMiddle())
+// console.log("middle:", list.findMiddle())
 // console.log(list.removeFrom(0))
 // console.log(list.removeValue(260))
 // console.log(list.removeValue(20))
@@ -321,8 +325,8 @@ console.log("middle:", list.findMiddle())
 // console.log(list.removeFrom(1))
 // list.removeFromback()
 // console.log(list.removeFromfront())
-list.duplicates()
+// list.duplicates()
 // console.log("this is search =",list.search(30))
 // list.reverse()
-console.log(list.getSize())
+// console.log(list.getSize())
 list.print()

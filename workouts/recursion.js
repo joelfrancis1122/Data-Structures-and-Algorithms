@@ -25,6 +25,25 @@ function joel(i=1){
   
   
   
+
+function recursive(n){
+  if(n==1){
+    console.log(1)
+return
+  }
+  
+  console.log(n)
+  recursive(n=n-1)
+}
+
+recursive(10)
+
+
+
+
+
+
+
   // function factorial(n) {
   //   if (n === 0) {
   //       return 1;

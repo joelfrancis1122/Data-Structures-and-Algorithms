@@ -1,6 +1,6 @@
 class HashTable {
     constructor(size){
-        this.table = new Array(size)
+        this.table = [...Array(size)]
         this.size = size
     }
 

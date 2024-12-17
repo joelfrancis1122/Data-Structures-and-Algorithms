@@ -8,8 +8,7 @@ function Fibonacci(n){
     return fib
 }
 console.log(Fibonacci(5))
-// console.log(Fibonacci(3))
-// console.log(Fibonacci(4))
+// console.log(Fibonacci(3)
 
 function recursiveFibonacci(n) {
     // var n;
@@ -19,3 +18,5 @@ function recursiveFibonacci(n) {
     return recursiveFibonacci(n - 1) + recursiveFibonacci(n - 2)
 }
 console.log(recursiveFibonacci(3))
+
+// console.log(recursiveFibonacci(4))

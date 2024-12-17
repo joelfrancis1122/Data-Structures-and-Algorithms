@@ -4,41 +4,30 @@
 // - *Worst Case:* O(n^2)
 // - *Space Complexity:* O(log n) (due to the stack space in recursive calls)
 
-
-
 function quickSort(arr) {
-    if(arr.length<2){
-        return arr
+  if (arr.length < 2) {
+    return arr;
+  }
+
+  let pivot = arr[arr.length - 1];
+
+  let left = [];
+  let right = [];
+  for (let i = 0; i < arr.length - 1; i++) {
+    if (arr[i] > pivot) {
+      left.push(arr[i]);
+    } else {
+      right.push(arr[i]);
     }
+  }
+  return [...quickSort(left), pivot, ...quickSort(right)];
+}
 
-    
-    let pivot = arr[arr.length - 1]
-    
-    let left = []
-    let right = []
-    for (let i = 0; i < arr.length - 1; i++) {
-        if(arr[i]>pivot){
-            left.push(arr[i])
-        }else{
-            right.push(arr[i])
-        }
-    }
-return [...quickSort(left),pivot,...quickSort(right)]
-
-
-}   
-
-
-                    
-
-      
-const arr = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -34]
-console.log(quickSort(arr))
-
+const arr = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -34];
+console.log(quickSort(arr));
 
 // worst case = O(n^2)
 // avg case = O(n logn)
-
 
 // ---------------------------------------
 
@@ -54,11 +43,10 @@ console.log(quickSort(arr))
 //     return arr
 // }
 
-
 // function partition(arr,left,right)
 // {
 //     const pivot=arr[right]
-//     let i= left-1  
+//     let i= left-1
 
 //     for(let j=left;j<right;j++)
 //     {

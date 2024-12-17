@@ -3,12 +3,10 @@ class Stack {
       this.arr = [];
     }
   
-    // Add an value to the stack
     push(value) {
       this.arr.push(value);
     }
    
-    // Remove and return the top value from the stack
     pop() {
       if (this.isEmpty()) {
         return "Stack is empty";
@@ -16,7 +14,6 @@ class Stack {
       return this.arr.pop();
     }
   
-    // Return the top value of the stack without removing it
     peek() {
       if (this.isEmpty()) {
         return "Stack is empty";

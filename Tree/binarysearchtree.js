@@ -1,267 +1,259 @@
-class Node {
-    constructor(value) {
-        this.value = value
+class Node{
+    constructor(value){
+        this.value = value 
         this.left = null
         this.right = null
     }
 }
 
-class binarySearchTree {
-    constructor() {
-        this.root = null
-    }
-
-    insert(value) {
-        const node = new Node(value)
-        if (!this.root) {
-            this.root = node
-        } else {
-            this.insertNode(this.root, node)
+    class BinarySearchTree{
+        constructor(){
+            this.root = null
         }
-    }
-
-    insertNode(root, node) {
-        if (node.value < root.value) {
-            if (!root.left) {
-                root.left = node
-            } else {
-                this.insertNode(root.left, node)
-            }
-        } else if (node.value > root.value) {
-            if (!root.right) {
-                root.right = node
-            } else {
-                this.insertNode(root.right, node)
+        isEmpty(){
+            return this.root === null
+        }
+        insert(value){
+            const node = new Node(value)
+            if(!this.root){
+                this.root = node
+            }else{
+                this.insertNode(this.root,node)
             }
         }
-    }
 
-    search(root, value) {
-        if (!root) {
-            return null
-        } else {
-            if (root.value == value) {
-                return true
-            } else if (value < root.value) {
-                return this.search(root.left, value)
-            } else {
-                return this.search(root.right, value)
-            }
-        }
-    }
-
-    preorder(root) {
-        if (root) {
-            console.log(root.value)
-            console.log('mmmmmmmmmmmmmm')
-            this.preorder(root.left)
-            console.log('??????????')
-            this.preorder(root.right)
-        }
-    }
-
-    inorder(root) {
-        if (root) {
-            this.inorder(root.left)
-            console.log(root.value)
-            this.inorder(root.right)
-        }
-    }
-
-    postorder(root) {
-        if (root) {
-            this.postorder(root.left)
-            this.postorder(root.right)
-            console.log(root.value)
-        }
-    }
-
-    bfs() {
-        const queue = {}
-        let front = 0
-        let rear = 0
-        queue[rear] = this.root
-        rear++
-
-        while (rear - front != 0) {
-            let cur = queue[front]
-            delete queue[front]
-            front++
-            console.log(cur.value)
-            if (cur.left) {
-                queue[rear] = cur.left
-                rear++
-                // queue.push(cur.left)
-            }
-            if (cur.right) {
-                queue[rear] = cur.right
-                rear++
-                // queue.push(cur.right)
-            }
-        }
-    }
-
-    zigZagTraversal() {
-        const queue = []
-        queue.push(this.root)
-        const result = []
-        let leftToRight = true
-        while (queue.length) { 
-            const limit = queue.length
-            const currentLevel = []
-            for (let i = 0; i < limit; i++) {
-                const currentNode = queue.shift()
-                if (leftToRight) {
-                    currentLevel.push(currentNode.value)
+        insertNode(root, node) {
+            if (node.value < root.value) {
+                if (root.left === null) {
+                    root.left = node;
                 } else {
-                    currentLevel.unshift(currentNode.value)
+                    this.insertNode(root.left, node);
                 }
-                if (currentNode.left) {
-                    queue.push(currentNode.left)
-                }
-                if (currentNode.right) {
-                    queue.push(currentNode.right)
-                }
-            }
-            result.push(currentLevel);
-            leftToRight = !leftToRight;
-        }
-        console.log(result)
-    }
-
-    findDepth(root, key) {
-        return this.findDepthHelper(root, key, 0)
-    }
-
-    findDepthHelper(node, key, depth) {
-        if (node == null) {
-            return -1
-        }
-        if (node.value == key) {
-            return depth
-        }
-        if (key < node.value) {
-            return this.findDepthHelper(node.left, key, depth + 1)
-        } else {
-            return this.findDepthHelper(node.right, key, depth + 1)
-        }
-    }
-
-    min(root) {
-        if (!root.left) {
-            return root.value
-        } else {
-            return this.min(root.left)
-        }
-    }
-
-    max(root) {
-        if (!root.right) {
-            return root.value
-        } else {
-            return this.max(root.right)
-        }
-    }
-
-    delete(value) {
-        this.root = this.deleteNode(this.root, value)
-    }
-
-    deleteNode(root, value) {
-        if (root === null) {
-            return root
-        } else if (value < root.value) {
-            root.left = this.deleteNode(root.left, value)
-        } else if (value > root.value) {
-            root.right = this.deleteNode(root.right, value)
-        } else {
-            if (!root.left && !root.right) {
-                return null
-            } else if (!root.left) {
-                return root.right
-            } else if (!root.right) {
-                return root.left
             } else {
+                if (root.right === null) {
+                    root.right = node;
+                } else {
+                    this.insertNode(root.right, node);
+                }
+            }
+        }
+        
+        
+        search(root, value) {
+            if (!root) {
+                return false;
+            } else {
+                if (root.value === value) {
+                    return true;
+                } else if (value < root.value) {
+                    return this.search(root.left, value);
+                } else {
+                    return this.search(root.right, value);
+                }
+            }
+        }
+        
+        // DFS TRAVERSAL 
+
+        preOrder(root){
+            if(root){
+                console.log(root.value)
+            this.preOrder(root.left)
+            this.preOrder(root.right)
+        }
+        }
+        inOrder(root){
+            if(root){
+                this.inOrder(root.left)
+                console.log(root.value)
+                this.inOrder(root.right)
+            }
+        }
+        postOrder(root){
+            if(root){
+                this.postOrder(root.left)
+                this.postOrder(root.right)
+                console.log(root.value)
+            }
+        }
+
+        // BFS TRAVERSAL 
+        levelOrder(){
+            //use the optimized queue implementation
+            const queue =[]
+            queue.push(this.root)
+
+            while(queue.length){
+                let curr = queue.shift()
+                console.log(curr.value)
+                if(curr.left){
+                    queue.push(curr.left)
+                }
+
+                if(curr.right){
+                    queue.push(curr.right)
+                }
+            }
+        }
+
+
+    
+
+
+        min(root){
+            if(!root.left){
+                return root.value
+            }else{
+                return this.min(root.left)
+            }
+        }
+
+
+
+        
+
+        max(root){
+            if(!root.right){
+                return root.value
+            }else{
+                return this.max(root.right)
+            }
+        }   
+
+        
+        getHight(root){
+            if(!root){
+                return 0
+            }
+    
+            const leftHight=this.getHight(root.left)
+            const rightHight=this.getHight(root.right)
+            return Math.max(leftHight,rightHight)+1
+        }
+        
+        findHeight() {
+            if (!this.root) {
+                return 0; // An empty tree has a height of 0
+            }
+        
+            let queue = [this.root];
+            let height = 0;
+        
+            while (queue.length ) {
+        
+                for (let i = 0; i < queue.length; i++) {
+                    let curr = queue.shift(); // Dequeue the front node
+                      console.log(curr.value)
+                    if (curr.left) {
+                        queue.push(curr.left); // Enqueue the left child
+                    }
+        
+                    if (curr.right) {
+                        queue.push(curr.right); // Enqueue the right child
+                    }
+                }
+        
+                console.log(height,"sdasheight")
+                height++; // Increment height after processing each level
+            }
+        
+            return height;
+        }
+        
+
+
+        delete(value){
+            this.root = this.deleteNode(this.root,value)
+        }
+        deleteNode(root,value){
+            if(!root){
+                return root 
+            }
+            if(value < root.value){
+                root.left = this.deleteNode(root.left,value)
+            }else if (value>root.value){
+                root.right = this.deleteNode(root.right,value)
+            }else{
+                if(!root.left&&!root.right){
+                    return null
+                }
+                if(!root.left){
+                    return root.right
+                }else if (!root.right){
+                    return root.left
+                }
                 root.value = this.min(root.right)
-                root.right = this.deleteNode(root.right, root.value)
+                root.right = this.deleteNode(root.right,root.value)
             }
+            return root
         }
-        return root
-    }
+        // ---------------------------------------------
 
-    isValid(root, min = null, max = null) {
-        if (!root) {
-            return true
-        }
-        if ((min != null && root.value <= min) || (max != null && root.value >= max)) {
-            return false
-        }
 
-        return (this.isValid(root.left, min, root.value) && (this.isValid(root.right, root.value, max)))
-    }
 
-    height(node = this.root) {
-        if (!node) {
-            return -1
-        }
-        let left = this.height(node.left)
-        let right = this.height(node.right)
-        return Math.max(left, right) + 1
-    }
-
-    secondLargest() {
-        if (!this.root || (!this.root.right && !this.root.left)) {
-            reutrn - 1
-        }
-        let current = this.root
-        let parent = null
-
-        while (current.right) {
-            parent = current
-            current = current.right
-        }
-        if (current.left) {
-            current = current.left
-            while (current.right) {
-                current = current.right
+     displayLeaf(root){
+        if (root) {
+            if (!root.left && !root.right) {
+                console.log(root.value);
             }
-            return current.value
+            this.displayLeaf(root.left);
+            this.displayLeaf(root.right);
         }
-        return parent.value
-    }
 
-    findSum() {
-        return this.sum(this.root)
-    }
+     }
 
-    sum(root) {
+
+
+     isValidBST(root, min = -Infinity, max = Infinity) {
         if (!root) {
-            return 0
+            return true; // An empty tree is a valid BST
         }
-        return root.value + this.sum(root.left) + this.sum(root.right)
+
+        // Check if the current node violates the BST properties
+        if (root.value <= min || root.value >= max) {
+            return false;
+        }
+
+        // Recursively check the left and right subtrees
+        return (
+            this.isValidBST(root.left, min, root.value) &&
+            this.isValidBST(root.right, root.value, max)
+        );
     }
-}
-const bst = new binarySearchTree()
-bst.insert(10)
-bst.insert(5)
-bst.insert(15)
-bst.insert(3)
-bst.insert(7)
-bst.insert(11)
-bst.insert(12)
-// bst.delete(7)
-// bst.insert(6)
-// bst.insert(8)
-// bst.preorder(bst.root)
-// bst.inorder(bst.root)
-// bst.postorder(bst.root)
-bst.bfs()
-// console.log(bst.max(bst.root))0.
-// console.log(bst.search(bst.root, 7))
-console.log('------------')
-bst.zigZagTraversal()
-console.log(bst.findDepth(bst.root, 7))
-// console.log(bst.isValid(bst.root))
-console.log(bst.height())
-console.log('-------')
-console.log(bst.secondLargest())
+
+
+    }
+
+
+
+
+    const bst = new BinarySearchTree();
+    console.log('Tree is empty:', bst.isEmpty()); // Tree is empty: true
+
+    bst.insert(10);
+    bst.insert(5);
+    bst.insert(15);
+    bst.insert(3);
+    bst.insert(0);
+    bst.root.value= 0;
+    console.log(JSON.stringify(bst,null,2))
+    // console.log(bst.search(bst.root, 10)); // true
+    // console.log(bst.search(bst.root, 5)); // true
+    // console.log(bst.search(bst.root, 15)); // true
+    // console.log(bst.search(bst.root, 20)); // false
+    console.log('------------------')
+    // console.log('------------------')
+    // bst.inOrder(bst.root)
+    // console.log('------------------')
+    // bst.postOrder(bst.root)
+    // console.log('------------------')
+    // bst.delete(3)
+    // bst.preOrder(bst.root)
+    // console.log("this is degree",bst.getHight(bst.root))
+    
+    // bst.levelOrder()
+    // console.log('min=>',bst.min(bst.root))
+    // console.log('max=>',bst.max(bst.root))
+    // bst.displayLeaf(bst.root);
+    console.log(bst.isValidBST(bst.root))
+    bst.levelOrder()

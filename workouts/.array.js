@@ -83,21 +83,35 @@ console.log(flattened); // Output: [1, 2, 3, 4, 5, 6]
 // ----------
 
 
-let k =0
-let result =[]
+// let k =0
+// let result =[]
 
-for(let i=0;i<arr.length;i++){
-    if(typeof arr[i]!=="number"){
-        for(let j=0;j<arr[i].length;j++){
-            result[k] = arr[i][j]
-            k++
-        }
-    }else{
-        result[k] = arr[i]
-        k++
+// for(let i=0;i<arr.length;i++){
+//     if(typeof arr[i]!=="number"){
+//         for(let j=0;j<arr[i].length;j++){
+//             result[k] = arr[i][j]
+//             k++
+//         }
+//     }else{
+//         result[k] = arr[i]
+//         k++
+//     }
+// }
+// console.log(result)
+
+
+let k = 0 
+let result = [] 
+ for(let i =0;i<arr.length;i++){
+  if(typeof arr[i] !== "number"){
+    for(let j =0;j<arr[i].length;i++){
+      result[k] = arr[i][j]
+    k++
     }
-}
-console.log(result)
-
+  }else{
+    result[k] = arr[i]
+  k++
+  }
+ }
 
 

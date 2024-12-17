@@ -58,3 +58,34 @@ console.log(arr)
     
     //----------------------------------------------------------------------------------
     
+
+
+    // function bubbleSortObjects(arr, key) {
+    //     let swapped;
+    //     do {
+    //         swapped = false;
+    //         for (let i = 0; i < arr.length - 1; i++) {
+    //             if (arr[i][key] > arr[i + 1][key]) {
+    //                 // Swap objects based on the key
+    //                 let temp = arr[i];
+    //                 arr[i] = arr[i + 1];
+    //                 arr[i + 1] = temp;
+    //                 swapped = true;
+    //             }
+    //         }
+    //     } while (swapped);
+    //     return arr;
+    // }
+    
+    // // Example Usage:
+    // const people = [
+    //     { name: "Alice", age: 30 },
+    //     { name: "Bob", age: 25 },
+    //     { name: "Charlie", age: 35 }
+    // ];
+    
+    // console.log("Before Sorting:", people);
+    
+    // // Sort by age
+    // const sortedPeople = bubbleSortObjects(people, "age");
+    // console.log("After Sorting by Age:", sortedPeople);    // 
