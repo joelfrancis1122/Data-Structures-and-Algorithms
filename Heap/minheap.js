@@ -31,22 +31,23 @@ class MinHeap{
         return min
     }
 
-    heapify(index){
-        let leftChildIndex= 2*index+1
-        let rightChildIndex=2*index+2
-        let smallest=index
-        if(leftChildIndex < this.heap.length && this.heap[leftChildIndex] < this.heap[smallest]){
-            smallest=leftChildIndex
+    heapify(i){
+        let left= 2*i+1
+        let right=2*i+2
+        let smallest=i
+        if(left < this.heap.length && this.heap[left] < this.heap[smallest]){
+            smallest=left
         }
-        if(rightChildIndex < this.heap.length && this.heap[rightChildIndex] < this.heap[smallest]){
-            smallest=rightChildIndex
+        if(right < this.heap.length && this.heap[right] < this.heap[smallest]){
+            smallest=right
         }
-        if(smallest != index){
-            [this.heap[index],this.heap[smallest]]=[this.heap[smallest],this.heap[index]]
+        if(smallest != i){
+            [this.heap[i],this.heap[smallest]]=[this.heap[smallest],this.heap[i]]
             this.heapify(smallest)
         }
     }
 } 
+
 const minHeap = new MinHeap();
 minHeap.insert(4);
 minHeap.insert(10);
