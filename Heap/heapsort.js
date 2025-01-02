@@ -1,40 +1,71 @@
-function heapSort(arr) {
-  let length = arr.length;
-
-  for (let i = Math.floor(length / 2) - 1; i >= 0; i--) {
-    heapify(arr, length, i);
+class MaxHeap {
+  constructor() {
+    this.heap = [];
   }
 
-  for (let i = length - 1; i > 0; i--) {
-    [arr[0], arr[i]] = [arr[i], arr[0]];
-    heapify(arr, i, 0);
-    console.log("as",arr, i, 0)
+  insert(value) {
+    this.heap.push(value);
+    this.shiftUp(this.heap.length - 1);
   }
 
-  return arr;
+  shiftUp(index) {
+    let parent = Math.floor((index - 1) / 2);
+    while (index > 0 && this.heap[parent] < this.heap[index]) {
+      [this.heap[parent], this.heap[index]] = [this.heap[index], this.heap[parent]];
+      index = parent;
+      parent = Math.floor((index - 1) / 2);
+    }
+  }
+
+  shiftDown(index) {
+    let left = 2 * index + 1;
+    let right = 2 * index + 2;
+    let largest = index;
+    if (left < this.heap.length && this.heap[left] > this.heap[largest]) {
+      largest = left;
+    }
+    if (right < this.heap.length && this.heap[right] > this.heap[largest]) {
+      largest = right;
+    }
+
+    if (largest !== index) {
+      [this.heap[index], this.heap[largest]] = [this.heap[largest],this.heap[index]];
+      this.shiftDown(largest);
+    }
+  }
+
+  remove() {
+    let max = this.heap[0];
+    this.heap[0] = this.heap.pop();
+    this.shiftDown(0);
+    return max;
+  }
+
+  print() {
+    console.log(this.heap.join(" "));
+  }
+
+  heapSort(array){
+    const result = [];
+    for(let i = 0 ; i < array.length ; i++){
+      this.insert(array[i]);
+    }
+    for(let i = 0 ; i < array.length ; i++){
+      result.push(this.remove());
+    }
+    return result;
+  }
+  
 }
 
-function heapify(arr, length, i) {
-  let largest = i;
-  let left = 2 * i + 1;
-  let right = 2 * i + 2;
+const heap = new MaxHeap();
+// heap.insert(200);
+// heap.insert(34);
+// heap.insert(23);
+// heap.insert(78);
+// heap.insert(33);
+// heap.remove();
 
-  if (left < length && arr[left] > arr[largest]) {
-    // console.log(arr, left, length, "both left and length");
-    largest = left;
-  }
-  if (right < length && arr[right] > arr[largest]) {
-    largest = right;
-  }
-  if (largest !== i) {
-    [arr[i], arr[largest]] = [arr[largest], arr[i]];
-    heapify(arr, length, largest);
-  }
-}
+heap.print();
 
-const arr = [15, 5, 20, 1, 17, 10, 30];
-console.log("Org array:", arr);
-
-heapSort(arr);
-console.log("Sorted array:", arr);
-
+console.log(heap.heapSort([2, 5, 3, 7, 50]));
